@@ -33,6 +33,8 @@ header {
 	overflow: auto;
 	margin-bottom: 3px;
 	padding: 10px;
+	transition: color 0.2s linear;
+
 }
 header h1 {
 	float: left;
@@ -123,4 +125,23 @@ background: #eee;
 	margin-bottom: 10px;
 }
 
+.container .faq{
+	width: 550px;
+}
+
+.container .tabs{
+	width: 550px;
+}
+
+.container .content{
+	width: 550px;
+}
+
+.contact h5{
+    padding-bottom: 10px;
+}
+
+.sitemap h5{
+	padding-bottom: 10px;
+}
 
