@@ -4,6 +4,7 @@ body {
 	font-size: 100%;
 }
 
+
 a {
 	text-decoration: none;
 	color: red;
@@ -49,10 +50,7 @@ main {
 	overflow: auto;
 	padding: 20px;
 }
-main .main_block {
-	float: left;
-	width: 570px;
-}
+
 main .image {
 	float: right;	
 	width: 290px;
@@ -145,3 +143,27 @@ background: #eee;
 	padding-bottom: 10px;
 }
 
+.content input {
+	width: 85%;
+	height: 36px;
+	margin: 10px;
+	font-family: Jura;
+	text-align: justify;
+	font-size:  24px;
+	box-shadow: 0 0 0 10px #ddd;
+}
+.content button {
+	height: 40px;
+	width: 11%;
+	min-width: 90px;
+	font-size: 16px;
+	margin:10px;
+	font-family: Ubuntu;
+	background: white;
+	box-shadow: 0 -3px 0 11px #ddd;
+}
+
+* {
+margin: 0;
+padding: 0;
+}
