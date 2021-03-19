@@ -36,18 +36,32 @@ $(".tabs a span").toArray().forEach(function (element) {
 		} 
 		else if ($element.parent().is(":nth-child(3)")) {
 				$(".content").append(
-				'<input type="text" class="inp">'+
-				'<button class="btn">Добавить</button>'
+				'<input type="text" class="inp">'+ '<button class="btn">+</button>'
 			);
 				var newToDo;
 			$('.btn').on('click',function(){
+			if (($(".inp").val() !== "") && (($(".inp").val()).trim().length > 0)){
 				newToDo= $('.inp').val();
 				if (newToDo!='') {
 					toDos.push( newToDo);
 					alert('Новое задание "'+newToDo+'" успешно добавлено!');
 					$('.inp').val("");
 				}
+			}
 			})
+			$(".inp").keypress(function(event) {
+				if (($(".inp").val() !== "") && (($(".inp").val()).trim().length > 0)){
+    			if (event.which == 13) {
+				newToDo= $('.inp').val();
+				if (newToDo!='') {
+					toDos.push( newToDo);
+					alert('Новое задание "'+newToDo+'" успешно добавлено!');
+					$('.inp').val("");
+				}
+				}
+			}
+			})
+
 		}
 		return false;
 	})
@@ -56,3 +70,27 @@ $(".tabs a span").toArray().forEach(function (element) {
 $(".tabs a:first-child span").trigger("click");
 
 })
+
+
+var main = function () { 
+	"use strict";
+	var addCommentFromInputBox = function () {
+		var $new_comment;
+		if ($(".comment-input input").val() !== "") {
+			$new_comment = $("<p>").text($(".comment-input input").val());
+			$new_comment.hide();
+			$(".comments").append($new_comment);
+			$new_comment.fadeIn();
+			$(".comment-input input").val("");
+		}
+	};
+	$(".comment-input button").on("click", function (event) {
+		addCommentFromInputBox();
+	});
+	$(".comment-input input").on("keypress", function (event) {
+		if (event.keyCode === 13) {
+			addCommentFromInputBox();
+		}
+	});
+};
+$(document).ready(main);

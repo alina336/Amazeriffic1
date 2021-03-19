@@ -167,3 +167,30 @@ background: #eee;
 margin: 0;
 padding: 0;
 }
+
+.comments p:nth-child(even) {
+background: lavender;
+}
+.comments p:nth-child(odd) {
+background: gainsboro;
+}
+.comments p{
+border-radius: 30px;
+}
+
+.tocomment{
+	padding-left: 320px;
+}
+
+.comment-input{
+	width: 200px;
+	float: left;
+}
+
+.comments{
+	padding-left: 200px;
+	padding-top: 18px;
+	word-break:break-all;
+	width: 500px;
+}
+
