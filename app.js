@@ -32,14 +32,9 @@ var organizeByTags = function (toDoObjects) {
 	return tagObjects;
 };
 
-// var toDos = [
-// "Закончить писать эту книгу",
-// "Вывести Грейси на прогулку в парк", 
-// "Ответить на электронные письма", 
-// "Подготовиться к лекции в понедельник", 
-// "Обновить несколько новых задач", 
-// "Купить продукты"
-// ];
+var addATask = function (toDos) {
+	
+}
 
 var main = function (toDoObjects) { 
 	"use strict";
@@ -89,32 +84,62 @@ var main = function (toDoObjects) {
 					});
 				}
 				else if ($element.parent().is(":nth-child(4)")) {
-					$(".content").append(
-						'<input type="text" class="inp">'+ '<button class="btn">+</button>'
-					);
-					var newToDo;
-					$('.btn').on('click',function(){
-					if (($(".inp").val() !== "") && (($(".inp").val()).trim().length > 0)){
-						newToDo= $('.inp').val();
-						if (newToDo!='') {
-							toDos.push( newToDo);
-							alert('Новое задание "'+newToDo+'" успешно добавлено!');
-							$('.inp').val("");
+					var $input = $("<input>").addClass("description"), 
+					$inputLabel = $("<p>").text("Новая задача: "),
+					$tagInput = $("<input>").addClass("tags"),
+					$tagLabel = $("<p>").text("Тэги: "),
+					$button = $("<button>").text("+");
+
+					$button.on("click", function () {
+						if (($input.val() !== "") && (($input.val()).trim().length > 0)) {
+							var description = $input.val(),
+							// разделение в соответствии с запятыми
+							tags = $tagInput.val().split(","); 
+							toDoObjects.push({"description":description, "tags":tags}); 
+							// обновление toDos
+							toDos = toDoObjects.map(function (toDo) {
+								return toDo.description;
+							});
+							$input.val("");
+							$tagInput.val("");
 						}
-					}
-					})
-					$(".inp").keypress(function(event) {
-						if (($(".inp").val() !== "") && (($(".inp").val()).trim().length > 0)){
+					});
+
+					$input.keypress(function(event) {
+						if (($input.val() !== "") && (($input.val()).trim().length > 0)) {
 							if (event.which == 13) {
-								newToDo= $('.inp').val();
-								if (newToDo!='') {
-									toDos.push( newToDo);
-									alert('Новое задание "'+newToDo+'" успешно добавлено!');
-									$('.inp').val("");
-								}
+								var description = $input.val(),
+								// разделение в соответствии с запятыми
+								tags = $tagInput.val().split(","); 
+								toDoObjects.push({"description":description, "tags":tags}); 
+								// обновление toDos
+								toDos = toDoObjects.map(function (toDo) {
+									return toDo.description;
+								});
+								$input.val("");
+								$tagInput.val("");
 							}
 						}
-					})
+					});
+
+					$tagInput.keypress(function(event) {
+						if (($input.val() !== "") && (($input.val()).trim().length > 0) && ($tagInput.val() !== "") && ($tagInput.val()).trim().length > 0) {
+							if (event.which == 13) {
+								var description = $input.val(),
+								// разделение в соответствии с запятыми
+								tags = $tagInput.val().split(","); 
+								toDoObjects.push({"description":description, "tags":tags}); 
+								// обновление toDos
+								toDos = toDoObjects.map(function (toDo) {
+									return toDo.description;
+								});
+								$input.val("");
+								$tagInput.val("");
+							}
+						}
+					});
+
+					$("main .content").append($inputLabel).append($input).append($tagLabel).append($tagInput).append($button); 
 				}
 				return false;
 			})
