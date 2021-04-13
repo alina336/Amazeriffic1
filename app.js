@@ -1,5 +1,4 @@
-"use strict";
-//
+
 var toDos = [
 "Закончить писать эту книгу",
 "Вывести Грейси на прогулку в парк", 
@@ -93,4 +92,9 @@ var main = function () {
 		}
 	});
 };
-$(document).ready(main);
+$(document).ready(function () {
+	$.getJSON("todos.json", function (toDoObjects) {
+	// вызов функции main с аргументом в виде объекта toDoObjects 
+		main(toDoObjects);
+	});
+});
